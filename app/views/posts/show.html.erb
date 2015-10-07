@@ -1,0 +1,4 @@
+<h3>Post</h3>
+<p>Title: <%= @post.title if @post.title %></p>
+<p>Body: <%= @post.body if @post.body %></p>
+<p>Creator: <%= @post.user.name if @post.user && @post.user.name %></p>
