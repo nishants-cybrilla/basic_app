@@ -44,7 +44,7 @@ class Users::SessionsController < Devise::SessionsController
         redirect_to generate_url( 'http://localhost:4040/t/welcome-to-discourse/8', return_params )
       end
     else
-      redirect_to root_path, alert: t('.sign_in')
+      redirect_to new_user_session_path, alert: t('.sign_in')
     end
   end
 end
