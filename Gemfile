@@ -9,6 +9,7 @@ gem 'coffee-rails', '4.1.0'
 gem 'jquery-rails', '4.0.5'
 gem 'turbolinks', '2.5.3'
 gem 'jbuilder', '2.3.2'
+gem 'discourse_api', '0.4.4'
 group :development, :test do
   gem 'byebug', '6.0.2'
 end

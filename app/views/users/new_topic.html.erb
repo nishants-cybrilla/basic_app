@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="authform">
+    <h3>Create New Topic</h3>
+    <%= form_tag users_create_topic_path(current_user), :html => { :method => :post, :role => 'form'} do %>
+      <div class="form-group">
+        <%= label_tag :title, 'Title' %>
+        <%= text_field_tag :title, nil, autofocus: true, class: 'form-control', minlength: 15, required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag :raw, 'Description' %>
+        <%= text_area_tag :raw, nil, class: 'form-control', minlength:20, required: true  %>
+      </div>
+
+      <%= submit_tag 'Create Post', :class => 'button right' %>
+    <% end %>
+  </div>
+</div>
