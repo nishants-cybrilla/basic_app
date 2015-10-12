@@ -24,4 +24,12 @@ class UsersController < ApplicationController
 
     redirect_to root_path, :notice => "Topic is successfully created."
   end
+
+  def facebook_tagging
+  end
+
+  def user_list
+    @users = User.where("name LIKE ?", "%#{params[:searchword]}%").to_json(:only => [ :id, :name ])
+    render json: @users
+  end
 end

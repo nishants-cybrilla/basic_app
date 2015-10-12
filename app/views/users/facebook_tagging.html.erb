@@ -1,0 +1,59 @@
+<div id="container">
+  <div id="contentbox" contenteditable="true">
+  </div>
+  <div id="display">
+  </div>
+  <div id="msgbox">
+  </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  var start=/@/ig; // @ Match
+  var word=/@(\w+)/ig; //@abc Match
+
+  $("#contentbox").on("keyup",function() {
+    var content=$(this).text(); //Content Box Data
+    var go= content.match(start); //Content Matching @
+    var name= content.match(word); //Content Matching @abc
+    var dataString = 'searchword='+ content.substring(content.indexOf('@') +1);
+    //If @ available
+    if(go != null ) {
+      $("#msgbox").slideDown('show');
+      $("#display").slideDown('show');
+      $("#msgbox").html("Type the name of someone or something...");
+      //if @abc avalable
+      if(name != null ) {
+        $.ajax({
+          type: "GET",
+          url: "user_list", // Database name search 
+          data: dataString,
+          cache: false,
+          success: function(data)
+          {
+            $("#display").show();
+            $("#msgbox").hide();
+            $("#display").empty();
+            $.each( data, function(index, value) {
+              $("#display").append('<div class="display_box"><a href="#" class="addname" user_id="'+ value.id +'" title="'+ value.name +'">'+ value.name +'</a></div>');
+            });
+          }
+        });
+      }
+    }
+  });
+
+  //Adding result name to content box.
+  $("#display").on("click", ".display_box", function(){
+    var username=$(this).find('a').attr('title');
+    var user_id=$(this).find('a').attr('user_id');
+    var old=$("#contentbox").html();
+    var content=old.replace(word," "); //replacing @abc to (" ") space
+    $("#contentbox").html(content);
+    var E="<a class='red' href='/users/"+ user_id +"' target='_blank'>"+ username +"</a>";
+    $("#contentbox").append(E);
+    $("#display").hide();
+    $("#msgbox").hide();
+  });
+});
+</script>
