@@ -10,6 +10,9 @@ gem 'jquery-rails', '4.0.5'
 gem 'turbolinks', '2.5.3'
 gem 'jbuilder', '2.3.2'
 gem 'discourse_api', '0.4.4'
+gem 'carrierwave', '0.10.0'
+gem 'mini_magick', '4.3.6'
+
 group :development, :test do
   gem 'byebug', '6.0.2'
 end

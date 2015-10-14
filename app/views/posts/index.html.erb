@@ -1,7 +1,7 @@
 <div class="container">
   <div class="authform">
     <h3>Create New Post</h3>
-    <%= form_for(@post, url: user_posts_path(current_user), :html => { :method => :post, :role => 'form'}) do |f| %>
+    <%= form_for(@post, url: user_posts_path(current_user), html: { method: :post, role: 'form'}) do |f| %>
       <% if @post.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -16,7 +16,7 @@
 
       <div class="form-group">
         <%= f.label :title %>
-        <%= f.text_field :title, :autofocus => true, class: 'form-control' %>
+        <%= f.text_field :title, autofocus: true, class: 'form-control' %>
       </div>
 
       <div class="form-group">
@@ -24,7 +24,7 @@
         <%= f.text_area :body, class: 'form-control' %>
       </div>
 
-      <%= f.submit :class => 'button right' %>
+      <%= f.submit class: 'button right' %>
     <% end %>
   </div>
   <div class="row">
