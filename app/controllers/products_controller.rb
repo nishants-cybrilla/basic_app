@@ -26,8 +26,7 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @product.remove_image! unless params[:product][:image] || params[:product][:image_cache] != ''
-
+    @product.remove_image! unless params[:product][:image]
     if @product.update(product_params)
       redirect_to products_path, notice: 'Product was successfully updated.'
     else
