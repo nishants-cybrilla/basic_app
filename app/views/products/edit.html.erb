@@ -29,7 +29,6 @@
           <%= content_tag :div, ' X ', class: 'delete_image' %>
           <%= image_tag f.object.image.thumb.url %>
           <%= f.file_field :image, style: 'display:none', accept: 'image/*', value: f.object.image, class: 'form-control' %>
-          <%= f.hidden_field :image_cache, value: f.object.image %>
         <% else %>
           <%= f.label :image %>
           <%= f.file_field :image, accept: 'image/*', class: 'form-control' %>
@@ -49,8 +48,6 @@ $(document).ready(function() {
     $(this).hide();
     $(this).parent().find('input').val('');
     $(this).parent().find('input').show();
-    $('#product_image_cache').val("");
-    event.preventDefault();
   });
 });
 </script>

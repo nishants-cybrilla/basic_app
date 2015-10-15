@@ -24,6 +24,21 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
 
+  attr_reader :width, :height
+  before :cache, :capture_size_before_cache
+
+  def capture_size_before_cache(new_file)
+    if version_name.blank?
+      if new_file.path.nil?
+        img = ::MiniMagick::Image::read(new_file.file)
+        @width = img[:width]
+        @height = img[:height]
+      else
+        @width, @height = `identify -format "%wx %h" #{new_file.path}`.split(/x/).map{|dim| dim.to_i}
+      end
+    end
+  end
+
   # Process files as they are uploaded:
   # process :scale => [200, 300]
   #
